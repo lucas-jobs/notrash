@@ -13,13 +13,12 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableJpaRepositories(basePackages = { "br.com.notrash" })
 public class DataSourceConfig {
 
-  // @Bean
-  // public PlatformTransactionManager transactionManager(EntityManagerFactory
-  // emf) {
-  // JpaTransactionManager transactionManager = new JpaTransactionManager();
-  // transactionManager.setEntityManagerFactory(emf);
+  @Bean
+  public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
+    JpaTransactionManager transactionManager = new JpaTransactionManager();
+    transactionManager.setEntityManagerFactory(emf);
 
-  // return transactionManager;
-  // }
+    return transactionManager;
+  }
 
 }

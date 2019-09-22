@@ -1,6 +1,8 @@
 
 package br.com.notrash.notrash.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,6 +29,10 @@ public class MoradorService {
   public void editar(Long id, Morador morador) {
     morador.setId(id);
     this.moradorRepository.save(morador);
+  }
+
+  public Optional<Morador> buscar(Long id) {
+    return this.moradorRepository.findById(id);
   }
 
 }

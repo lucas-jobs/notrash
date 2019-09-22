@@ -45,4 +45,7 @@ public class Condominio {
   @OneToMany(mappedBy = "condominio")
   private List<CondominioDiasColeta> diasColetas;
 
+  @OneToMany(mappedBy = "condominio")
+  private List<UsuarioCondominio> usuarios;
+
 }

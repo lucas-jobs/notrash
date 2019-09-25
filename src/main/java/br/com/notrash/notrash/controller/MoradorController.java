@@ -12,7 +12,7 @@ import br.com.notrash.notrash.entity.Morador;
 import br.com.notrash.notrash.service.MoradorService;
 
 @RestController
-@RequestMapping("/resident")
+@RequestMapping("/morador")
 public class MoradorController {
 
   private final MoradorService moradorService;
@@ -23,23 +23,18 @@ public class MoradorController {
   }
 
   @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-  public ResponseEntity<?> find(@PathVariable Long id) {
+  public ResponseEntity<?> buscar(@PathVariable Long id) {
     return null;
 
-  }
-
-  @RequestMapping(value = "/search", method = RequestMethod.GET)
-  public ResponseEntity<?> search() {
-    return null;
   }
 
   @RequestMapping(method = RequestMethod.POST)
-  public void save(@RequestBody Morador morador) {
+  public void cadastrar(@RequestBody Morador morador) {
 
   }
 
   @RequestMapping(method = RequestMethod.PUT)
-  public void update(@PathVariable Long id, @RequestBody Morador morador) {
+  public void alterar(@PathVariable Long id, @RequestBody Morador morador) {
 
   }
 }

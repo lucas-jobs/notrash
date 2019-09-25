@@ -12,7 +12,7 @@ import br.com.notrash.notrash.entity.Condominio;
 import br.com.notrash.notrash.service.CondominioService;
 
 @RestController
-@RequestMapping("/condominum")
+@RequestMapping("/condominio")
 public class CondominioController {
 
   private final CondominioService condominioService;
@@ -23,23 +23,18 @@ public class CondominioController {
   }
 
   @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-  public ResponseEntity<?> find(@PathVariable Long id) {
+  public ResponseEntity<?> buscar(@PathVariable Long id) {
     return null;
 
-  }
-
-  @RequestMapping(value = "/search", method = RequestMethod.GET)
-  public ResponseEntity<?> search() {
-    return null;
   }
 
   @RequestMapping(method = RequestMethod.POST)
-  public void save(@RequestBody Condominio condominio) {
+  public void cadastrar(@RequestBody Condominio condominio) {
 
   }
 
   @RequestMapping(method = RequestMethod.PUT)
-  public void update(@PathVariable Long id, @RequestBody Condominio condominio) {
+  public void alterar(@PathVariable Long id, @RequestBody Condominio condominio) {
 
   }
 }

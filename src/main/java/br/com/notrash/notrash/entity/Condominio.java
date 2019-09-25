@@ -18,11 +18,11 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "TB_CONDOMINIO")
+@SequenceGenerator(name = "sequence_condominio", sequenceName = "seq_condominio", allocationSize = 1)
 public class Condominio {
 
   @Id
-  @SequenceGenerator(name = "seqCondominio", allocationSize = 1)
-  @GeneratedValue(generator = "seqCondominio", strategy = GenerationType.SEQUENCE)
+  @GeneratedValue(generator = "sequence_condominio", strategy = GenerationType.SEQUENCE)
   @Column(name = "ID", insertable = true, updatable = false)
   private Long id;
 
@@ -40,12 +40,7 @@ public class Condominio {
   private String email;
 
   @OneToMany(mappedBy = "condominio")
-  private List<CondominioMorador> moradores;
+  private List<CondDiasColeta> diasColetas;
 
-  @OneToMany(mappedBy = "condominio")
-  private List<CondominioDiasColeta> diasColetas;
-
-  @OneToMany(mappedBy = "condominio")
-  private List<UsuarioCondominio> usuarios;
 
 }

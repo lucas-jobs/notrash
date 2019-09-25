@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 @Data
 @EqualsAndHashCode
-public class UsuaCondominioMorador implements Serializable {
+public class UsuaCondMoradPK implements Serializable {
 
     private Long usuario;
     private Long condominio;

@@ -20,13 +20,13 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "TB_USUARIO")
+@SequenceGenerator(name = "sequence_usuario", sequenceName = "seq_usuario", allocationSize = 1)
 public class Usuario implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
   @Id
-  @SequenceGenerator(name = "seqUsuario", allocationSize = 1)
-  @GeneratedValue(generator = "seqUsuario", strategy = GenerationType.SEQUENCE)
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequence_usuario")
   @Column(name = "ID", updatable = false)
   private Long id;
 

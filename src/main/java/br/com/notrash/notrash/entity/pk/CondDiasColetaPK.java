@@ -8,7 +8,7 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode
-public class CondominioDiasColetaPK implements Serializable {
+public class CondDiasColetaPK implements Serializable {
 
   private static final long serialVersionUID = 1L;
 

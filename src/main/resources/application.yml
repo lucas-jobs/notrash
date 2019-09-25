@@ -5,6 +5,7 @@ spring:
     properties.hibernate.dialect: org.hibernate.dialect.Oracle10gDialect
     properties.hibernate.connection.release_mode: after_transaction
     properties.hibernate.proc.param_null_passing: true
+#    properties.hibernate.hbm2ddl.auto: create
     show-sql: true
 
   datasource:
@@ -12,18 +13,3 @@ spring:
     password: EDF452
     url: jdbc:oracle:thin:@oracle.fiap.com.br:1521:orcl
     driver-class-name: oracle.jdbc.OracleDriver
-    gateway:
-      timeout: 60000
-    pool:
-      initialPoolSize: 1
-      minPoolSize: 1
-      maxPoolSize: 5
-      abandonedConnectionTimeout: 120
-      inactiveConnectionTimeout: 120
-      timeoutCheckInterval: 30
-      maxConnectionReuseTime: 1800
-      validateConnectionOnBorrow: true
-      connectionWaitTimeout: 1
-      connectionProperties:
-        connectTimeout: 2000
-        readTimeout: 60000

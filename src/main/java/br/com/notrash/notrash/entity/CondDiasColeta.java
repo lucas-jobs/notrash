@@ -10,14 +10,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import br.com.notrash.notrash.entity.pk.CondominioDiasColetaPK;
+import br.com.notrash.notrash.entity.pk.CondDiasColetaPK;
 import lombok.Data;
 
 @Data
 @Entity
 @Table(name = "TB_CONDOMINIO_DIAS_COLETA")
-@IdClass(CondominioDiasColetaPK.class)
-public class CondominioDiasColeta implements Serializable {
+@IdClass(CondDiasColetaPK.class)
+public class CondDiasColeta implements Serializable {
 
   private static final long serialVersionUID = 1L;
 

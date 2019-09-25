@@ -11,7 +11,7 @@ import java.util.Calendar;
 @Entity
 @Table(name = "TB_USUA_CONDO_MORAD")
 @IdClass(UsuaCondMoradPK.class)
-public class UsuaCondMorad implements Serializable {
+public class UsuarioCondMorador implements Serializable {
 
     @Id
     @ManyToOne

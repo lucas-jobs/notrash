@@ -39,12 +39,14 @@
 			<version>1.18.10</version>
 		</dependency>
 
+<!--	Acessar pasta lib e executar este comando -->
+<!--		mvn install:install-file -Dfile=path/to/your/ojdbc8.jar -DgroupId=com.oracle-->
+<!--		-DartifactId=ojdbc8 -Dversion=19.3 -Dpackaging=jar-->
+
 		<dependency>
-			<groupId>oracle</groupId>
-			<artifactId>jdbc-driver</artifactId>
-			<version>12</version>
-			<scope>system</scope>
-			<systemPath>${basedir}/lib/ojdbc6.jar</systemPath>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc8</artifactId>
+			<version>19.3</version>
 		</dependency>
 
 	</dependencies>

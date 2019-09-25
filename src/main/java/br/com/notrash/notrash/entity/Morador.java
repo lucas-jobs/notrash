@@ -20,11 +20,11 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "TB_MORADOR")
+@SequenceGenerator(name = "sequence_morador", sequenceName = "seq_morador", allocationSize = 1)
 public class Morador {
 
   @Id
-  @SequenceGenerator(name = "seqCondominio", allocationSize = 1)
-  @GeneratedValue(generator = "seqCondominio", strategy = GenerationType.SEQUENCE)
+  @GeneratedValue(generator = "sequence_morador", strategy = GenerationType.SEQUENCE)
   @Column(name = "ID", insertable = true, updatable = false)
   private Long id;
 
@@ -39,8 +39,5 @@ public class Morador {
   @Column(name = "DATAHORA")
   @Temporal(TemporalType.DATE)
   private Calendar datahora;
-
-  // @OneToOne(mappedBy = "morador")
-  // private CondominioMorador condominio;
 
 }

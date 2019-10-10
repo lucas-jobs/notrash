@@ -1,43 +1,51 @@
 package br.com.notrash.notrash.entity;
 
-import java.util.Calendar;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 @Data
 @Entity
 @Table(name = "TB_MORADOR")
-@SequenceGenerator(name = "sequence_morador", sequenceName = "seq_morador", allocationSize = 1)
-public class Morador {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class Morador implements Serializable {
 
-  @Id
-  @GeneratedValue(generator = "sequence_morador", strategy = GenerationType.SEQUENCE)
-  @Column(name = "ID", insertable = true, updatable = false)
-  private Long id;
+    @Id
+    @NotNull(message = "Campo 'CPF' Obrigatorio, Favor preencher corretamente")
+    @Column(name = "CPF", length = 11)
+    private Long cpf;
 
-  @Column(name = "NOME", length = 100)
-  @NotEmpty
-  private String nome;
+    @NotEmpty(message = "Campo 'Nome' Obrigatorio, Favor preencher corretamente")
+    @Column(name = "DES_NOME", nullable = false, length = 100)
+    private String nome;
 
-  @Column(name = "EMAIL", length = 100)
-  @Email
-  private String email;
+    @NotEmpty(message = "Campo 'Apartamento' Obrigatorio, Favor preencher corretamente")
+    @Column(name = "DES_APTO", nullable = false, length = 10)
+    private String apto;
 
-  @Column(name = "DATAHORA")
-  @Temporal(TemporalType.DATE)
-  private Calendar datahora;
+    @Column(name = "PONTUACAO", nullable = false, length = 10)
+    private Integer pontuacao;
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "DES_EMAIL", referencedColumnName = "EMAIL")
+    private Usuario usuario;
+
+    @ManyToOne
+    @JoinColumn(name = "CONDOMINIO_CNPJ", referencedColumnName = "CNPJ", nullable = false)
+    private Condominio condominio;
+
+    private transient Long cnpj;
+    private transient Integer pontoUsado;
+
+    @PrePersist
+    public void preCadastro() {
+        this.pontuacao = 0;
+    }
 
 }

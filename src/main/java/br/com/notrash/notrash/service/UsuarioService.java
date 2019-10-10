@@ -1,33 +1,31 @@
 package br.com.notrash.notrash.service;
 
-import java.util.Optional;
-
+import br.com.notrash.notrash.entity.Usuario;
+import br.com.notrash.notrash.exception.BusinessException;
+import br.com.notrash.notrash.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import br.com.notrash.notrash.entity.Usuario;
-import br.com.notrash.notrash.repository.UsuarioRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UsuarioService {
+    private final UsuarioRepository usuarioRepository;
 
-  private final UsuarioRepository usuarioRepository;
+    @Autowired
+    public UsuarioService(UsuarioRepository usuarioRepository) {
+        this.usuarioRepository = usuarioRepository;
+    }
 
-  @Autowired
-  public UsuarioService(UsuarioRepository usuarioRepository) {
-    this.usuarioRepository = usuarioRepository;
-  }
+    @Transactional
+    public void salvar(Usuario usuario) throws BusinessException {
+        if(usuarioRepository.existsById(usuario.getEmail()))
+            throw new BusinessException("Usuário informado já existe!");
 
-  public void cadastrar(Usuario usuario) {
-    this.usuarioRepository.save(usuario);
-  }
+        usuarioRepository.saveAndFlush(usuario);
+    }
 
-  public void editar(Long id, Usuario usuario) {
-    usuario.setId(id);
-    this.usuarioRepository.save(usuario);
-  }
+    public Usuario buscar(String email) throws BusinessException {
+        return usuarioRepository.findById(email).orElseThrow(() -> new BusinessException("Usuário não encontrado!"));
+    }
 
-  public Optional<Usuario> buscar(Long id) {
-    return this.usuarioRepository.findById(id);
-  }
 }

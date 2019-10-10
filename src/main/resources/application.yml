@@ -1,15 +1,14 @@
+server:
+  port: 8080
 spring:
   application:
     name: notrash
   jpa:
-    properties.hibernate.dialect: org.hibernate.dialect.Oracle10gDialect
-    properties.hibernate.connection.release_mode: after_transaction
-    properties.hibernate.proc.param_null_passing: true
-#    properties.hibernate.hbm2ddl.auto: create
+    hibernate.ddl-auto: validate
+    database-platform: org.hibernate.dialect.H2Dialect
     show-sql: true
-
   datasource:
-    username: PF0392
-    password: EDF452
-    url: jdbc:oracle:thin:@oracle.fiap.com.br:1521:orcl
-    driver-class-name: oracle.jdbc.OracleDriver
+    url: jdbc:h2:file:/home/lucasbrandao/Documents/AM/no-trash/h2/NoTrashBD
+    username: sa
+    password: password
+    driver-class-name: org.h2.Driver

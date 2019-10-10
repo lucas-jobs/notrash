@@ -43,10 +43,16 @@
 <!--		mvn install:install-file -Dfile=path/to/your/ojdbc8.jar -DgroupId=com.oracle-->
 <!--		-DartifactId=ojdbc8 -Dversion=19.3 -Dpackaging=jar-->
 
+<!--		<dependency>-->
+<!--			<groupId>com.oracle</groupId>-->
+<!--			<artifactId>ojdbc8</artifactId>-->
+<!--			<version>19.3</version>-->
+<!--		</dependency>-->
+
 		<dependency>
-			<groupId>com.oracle</groupId>
-			<artifactId>ojdbc8</artifactId>
-			<version>19.3</version>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
 		</dependency>
 
 	</dependencies>

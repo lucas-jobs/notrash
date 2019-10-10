@@ -1,13 +1,14 @@
 package br.com.notrash.notrash.controller;
 
 import br.com.notrash.notrash.entity.Usuario;
+import br.com.notrash.notrash.exception.BusinessException;
 import br.com.notrash.notrash.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/usuario")
+@RequestMapping("usuario")
 public class UsuarioController {
 
     private final UsuarioService usuarioService;
@@ -17,19 +18,10 @@ public class UsuarioController {
         this.usuarioService = usuarioService;
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<?> buscar(@PathVariable Long id) {
-        return null;
-
+    @PostMapping
+    @ResponseStatus(code = HttpStatus.CREATED)
+    public void salvar(@RequestBody Usuario usuario) throws BusinessException {
+        usuarioService.salvar(usuario);
     }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public void cadastrar(@RequestBody Usuario usuario) {
-
-    }
-
-    @RequestMapping(method = RequestMethod.PUT)
-    public void alterar(@PathVariable Long id, @RequestBody Usuario usuario) {
-
-    }
 }

@@ -1,11 +1,6 @@
 package br.com.notrash.notrash.repository;
 
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
-
 import br.com.notrash.notrash.entity.Usuario;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@Repository
-public interface UsuarioRepository extends CrudRepository<Usuario, Long> {
-
-}
+public interface UsuarioRepository extends JpaRepository<Usuario, String> { }

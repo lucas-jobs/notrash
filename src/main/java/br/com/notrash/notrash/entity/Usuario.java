@@ -1,50 +1,42 @@
 package br.com.notrash.notrash.entity;
 
-import java.io.Serializable;
-import java.util.Calendar;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-
-import lombok.Data;
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.Calendar;
 
 @Data
 @Entity
 @Table(name = "TB_USUARIO")
-@SequenceGenerator(name = "sequence_usuario", sequenceName = "seq_usuario", allocationSize = 1)
+@AllArgsConstructor @NoArgsConstructor
 public class Usuario implements Serializable {
 
-  private static final long serialVersionUID = 1L;
+    @Id
+    @Email
+    @NotEmpty(message = "Campo 'Email' Obrigatorio, Favor preencher corretamente")
+    @Column(name = "EMAIL", nullable = false, length = 150)
+    private String email;
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequence_usuario")
-  @Column(name = "ID", updatable = false)
-  private Long id;
+    @Column(name = "NOME_COMPLETO", length = 100)
+    private String nome;
 
-  @NotEmpty
-  @Column(name = "TOKEN", updatable = false, unique = true)
-  private String token;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "DATA_HORA")
+    private Calendar dataHora;
 
-  @Email
-  @NotEmpty
-  @Column(name = "EMAIL", updatable = false, unique = true, length = 100)
-  private String email;
+    @PrePersist
+    public void preCadastro(){
+        this.dataHora = Calendar.getInstance();
+    }
 
-  @NotEmpty
-  @Column(name = "NOME", length = 100)
-  private String nome;
-
-  @Temporal(TemporalType.DATE)
-  @Column(name = "DATAHORA")
-  private Calendar datahora;
+    public Usuario(String email) {
+        this.email = email;
+    }
 
 }
